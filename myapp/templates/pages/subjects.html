@@ -1,0 +1,31 @@
+{% extends 'pages/index.html' %}
+
+{% block title %}Subjects{% endblock %}
+
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    
+    <div class="container mt-4">
+        <h1 class="mb-4">Subjects</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subject in subjects %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ subject.name }}</td>
+                        <td>{{ subject.code }}</td>
+                        <td>{{ subject.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

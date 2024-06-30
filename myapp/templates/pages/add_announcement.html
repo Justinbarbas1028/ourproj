@@ -1,0 +1,22 @@
+{% extends 'pages/index.html' %}
+{% block title %}Add Announcement{% endblock %}
+
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <div class="container mt-5">
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h2 class="mb-0">Add Announcement</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

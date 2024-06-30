@@ -1,0 +1,17 @@
+{% extends 'pages/index.html' %}
+
+{% block title %}Update Professor{% endblock %}
+
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <h2>Update Professor</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Professor</button>
+    </form>
+    <form action="{% url 'delete_professor' professor.id %}" method="post" style="margin-top: 10px;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete Professor</button>
+    </form>
+{% endblock %}

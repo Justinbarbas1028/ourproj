@@ -1,0 +1,17 @@
+{% extends 'pages/index.html' %}
+
+{% block title %}Update Subject{% endblock %}
+
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <h2>Update Subject</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Subject</button>
+    </form>
+    <form action="{% url 'delete_subject' subject.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete Subject</button>
+    </form>
+{% endblock %}

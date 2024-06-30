@@ -1,0 +1,98 @@
+{% extends "pages/admin_base.html" %}
+
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Account List</h1>
+        <div class="form-group">
+            <label>Filter by:</label><br>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" id="filterStudent" value="student" checked>
+                <label class="form-check-label" for="filterStudent">Student</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" id="filterAdmin" value="admin" checked>
+                <label class="form-check-label" for="filterAdmin">Admin</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" id="filterProfessor" value="professor" checked>
+                <label class="form-check-label" for="filterProfessor">Professor</label>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Type</th>  
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date of Birth</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="accountList">
+                {% for student in students %}
+                    <tr class="accountRow {% if student.is_admin %}admin{% elif student.professor %}professor{% else %}student{% endif %}">
+                        <td>
+                            {% if student.is_admin %}
+                                Admin
+                            {% elif student.professor %}
+                                Professor
+                            {% else %}
+                                Student
+                            {% endif %}
+                        </td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.first_name }}</td>
+                        <td>{{ student.last_name }}</td>
+                        <td>{{ student.date_of_birth }}</td>
+                        <td>
+                            <a href="{% url 'admin_edit_student' student.id %}" class="btn btn-success btn-sm mb-1">Edit</a>
+                            <a href="{% url 'admin_delete_student' student.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterStudent = document.getElementById('filterStudent');
+            const filterAdmin = document.getElementById('filterAdmin');
+            const filterProfessor = document.getElementById('filterProfessor');
+            const accountRows = document.querySelectorAll('.accountRow');
+
+            function updateVisibility() {
+                accountRows.forEach(row => {
+                    const isStudent = row.classList.contains('student');
+                    const isAdmin = row.classList.contains('admin');
+                    const isProfessor = row.classList.contains('professor');
+
+                    if ((filterStudent.checked && isStudent) ||
+                        (filterAdmin.checked && isAdmin) ||
+                        (filterProfessor.checked && isProfessor)) {
+                        row.style.display = 'table-row';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                if (!filterStudent.checked && !filterAdmin.checked && !filterProfessor.checked) {
+                    accountRows.forEach(row => {
+                        row.style.display = 'table-row';
+                    });
+                }
+            }
+
+            filterStudent.addEventListener('change', updateVisibility);
+            filterAdmin.addEventListener('change', updateVisibility);
+            filterProfessor.addEventListener('change', updateVisibility);
+
+            updateVisibility();
+        });
+    </script>
+{% endblock %}

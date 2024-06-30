@@ -1,0 +1,43 @@
+{% extends 'pages/index.html' %}
+
+{% block title %}Profile{% endblock %}
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Profile Information</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        {% if student_profile.profile_picture %}
+                            <img src="{{ student.profile_picture.url }}" class="rounded-circle img-thumbnail" alt="Profile Picture">
+                        {% else %}
+                            <img src="https://via.placeholder.com/150" class="rounded-circle img-thumbnail" alt="Profile Picture">
+                        {% endif %}
+                        <h4>{{ student.first_name }} {{ student.last_name }}</h4>
+                        <p class="text-muted">{{ student.email }}</p>
+                        <p>{{ student_profile.address }}</p>
+                        <p>{{ student_profile.phone_number }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Update Profile</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            {{ profile_form.as_p }}
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
