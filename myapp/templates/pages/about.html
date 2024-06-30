@@ -1,0 +1,42 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+<title>{% block title %}About{% endblock %}</title>
+
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <div class="about-headers">
+        <div class="about">
+            CORE VALUES AND PRINCIPLES
+            <h5>Welcome to our website, where we proudly present the core values, principles, mission, and vision that guide our university.
+                Discover how we strive to foster an inspiring and inclusive educational environment dedicated to excellence and innovation.</h5>
+            <button class="learn-more-btn">Learn More</button>
+        </div>
+    </div>
+    <div class="univ-vision">
+        <div class="vision-container">
+            <div>
+                <h1>UNIVERSITY VISION</h1>
+                <hr>
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The premier university in historic Cavite globally recognized for excellence in character development, academics, research, innovation and sustainable community engagement.</h5>
+            </div>
+        </div>
+    </div>
+    <div class="univ-mission">
+        <div class="mission-container">
+            <div>
+                <h1>UNIVERSITY MISSION</h1>
+                <hr> 
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cavite State University shall provide excellent, equitable and relevant educational opportunities in the arts, sciences and technology through quality instruction and responsive research and development activities.
+                    <br>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It shall produce professional, skilled and morally upright individuals for global competitiveness.
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="univ-third">
+        <div class="third-container">
+
+        </div>
+    </div>
+    
+{% endblock %}

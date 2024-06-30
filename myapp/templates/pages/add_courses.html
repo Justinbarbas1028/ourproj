@@ -1,0 +1,13 @@
+{% extends 'pages/index.html' %}
+
+{% block title %}Add Course{% endblock %}
+
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <h2>Add Course</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Course</button>
+    </form>
+{% endblock %}

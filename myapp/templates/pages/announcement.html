@@ -1,0 +1,31 @@
+{% extends 'pages/index.html' %}
+{% block title %}Announcements{% endblock %}
+
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Announcements</h1>
+        {% if request.user.is_admin %}
+            <a href="{% url 'add_announcement' %}" class="btn btn-primary mb-4">Add Announcement</a>
+        {% endif %}
+        <div class="row">
+            {% for announcement in announcements %}
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ announcement.title }}</h5>
+                            <p class="card-text">{{ announcement.content }}</p>
+                            <small class="text-muted">Created on {{ announcement.created_at }}</small>
+                            {% if request.user.is_admin %}
+                                <div class="mt-3">
+                                    <a href="{% url 'update_announcement' announcement.id %}" class="btn btn-warning">Edit</a>
+                                    <a href="{% url 'delete_announcement' announcement.id %}" class="btn btn-danger">Delete</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

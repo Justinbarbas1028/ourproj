@@ -1,0 +1,14 @@
+{% extends 'pages/index.html' %}
+{% block title %}Update Announcement{% endblock %}
+
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Update Announcement</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+{% endblock %}

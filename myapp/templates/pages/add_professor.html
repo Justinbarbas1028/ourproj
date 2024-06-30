@@ -1,0 +1,12 @@
+{% extends 'pages/index.html' %}
+
+{% block title %}Add Professor{% endblock %}
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <h2>Add Professor</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Professor</button>
+    </form>
+{% endblock %}

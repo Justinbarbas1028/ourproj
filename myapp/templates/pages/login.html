@@ -1,0 +1,25 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block title %}LOGIN PAGE{% endblock %}
+{% block content %}
+<div class="login-container-wrapper">
+    <div class="login-container">
+        <img src="{% static 'images/cvsu-logo.png' %}" alt="Logo">
+        <h1>Login</h1>
+        <form method="post" action="{% url 'user_login' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Username" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+            <div class="form-text">
+                <a href="#">Forgot your password?</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

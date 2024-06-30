@@ -1,0 +1,17 @@
+{% extends 'pages/index.html' %}
+
+{% block title %}Update Course{% endblock %}
+
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <h2>Update Course</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Course</button>
+    </form>
+    <form action="{% url 'delete_course' course.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete Course</button>
+    </form>
+{% endblock %}
