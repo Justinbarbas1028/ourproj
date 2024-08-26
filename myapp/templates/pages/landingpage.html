@@ -1,0 +1,16 @@
+{% extends 'pages/index.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="landingpage-container">
+        <img src="{% static 'images/cvsu-logo.png' %}" alt="CVSU Page Logo" class="cvsupage-logo">
+        <div class="text-container">
+            <h1 class="landing-title">CAVITE STATE <br> UNIVERSITY - BACOOR </h1>
+            <a href="{% url 'registration' %}" class="btn btn-success landing-button">REGISTER NOW!</a> <!-- New Button -->
+        </div>
+        <ul class="navbar-landing">
+            <li><a href="{% url 'user_login' %}" class="btn btn-success">LOGIN</a></li>
+        </ul>
+    </div>
+{% endblock %}

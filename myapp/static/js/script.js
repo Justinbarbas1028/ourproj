@@ -44,3 +44,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateVisibility();
 });
+
+
+ function toggleStudentFields() {
+        var studentType = document.getElementById('student_type').value;
+        var studentNumberField = document.getElementById('student_number_field');
+        var yearLevelField = document.getElementById('year_level_field');
+        var semesterField = document.getElementById('semester_field');
+
+        if (studentType === 'old') {
+            studentNumberField.style.display = 'block';
+            yearLevelField.style.display = 'block';
+            semesterField.style.display = 'block';
+        } else {
+            studentNumberField.style.display = 'none';
+            yearLevelField.style.display = 'none';
+            semesterField.style.display = 'none';
+        }
+    }

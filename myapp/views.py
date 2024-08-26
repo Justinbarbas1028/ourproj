@@ -41,6 +41,13 @@ def register(request):
 def index(request):
     return render(request, 'pages/index.html')
 
+
+def landingpage(request):
+    return render(request, 'pages/landingpage.html')
+
+def registration(request):
+    return render(request, 'pages/registration.html')
+
 @login_required
 def administrator_page(request):
     if not request.user.is_admin:

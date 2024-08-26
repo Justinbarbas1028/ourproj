@@ -1,0 +1,100 @@
+{% extends 'pages/index.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="registration-main">
+    <div class="registration-container container mt-5" style="background-color: white; padding: 30px; border-radius: 10px; max-width: 500px; width: 100%;">
+        <h2 class="text-center mb-4 text-black">Register Now</h2>
+
+        <div class="mb-4">
+            <label for="student_type" class="form-label text-black">Are you a new or old student?</label>
+            <select class="form-select" id="student_type" name="student_type" required onchange="toggleStudentFields()">
+                <option value="">Select your student type</option>
+                <option value="new">New Student</option>
+                <option value="old">Old Student</option>
+            </select>
+        </div>
+
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label text-black">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <!-- Student Number Field -->
+            <div class="mb-3" id="student_number_field" style="display: none;">
+                <label for="student_number" class="form-label text-black">Student Number</label>
+                <input type="tel" class="form-control" id="student_number" name="student_number" pattern="[0-9]*" inputmode="numeric">
+            </div>
+
+            <!-- Date of Birth Field -->
+            <div class="mb-3">
+                <label for="dob" class="form-label text-black">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob" required>
+            </div>
+
+            <!-- Address Field -->
+            <div class="mb-3">
+                <label for="address" class="form-label text-black">Address</label>
+                <input type="text" class="form-control" id="address" name="address" required>
+            </div>
+
+            <!-- Course Field -->
+            <div class="mb-3">
+                <label for="course" class="form-label text-black">Course</label>
+                <input type="text" class="form-control" id="course" name="course" required>
+            </div>
+
+            <!-- Year Level Field -->
+            <div class="mb-3" id="year_level_field" style="display: none;">
+                <label for="year_level" class="form-label text-black">Year Level</label>
+                <select class="form-select" id="year_level" name="year_level">
+                    <option value="">Select your year level</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+            </div>
+
+            <!-- Semester Field -->
+            <div class="mb-3" id="semester_field" style="display: none;">
+                <label for="semester" class="form-label text-black">Semester</label>
+                <select class="form-select" id="semester" name="semester">
+                    <option value="">Select your semester</option>
+                    <option value="first">First Semester</option>
+                    <option value="second">Second Semester</option>
+                    <option value="midyear">Midyear</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="age" class="form-label text-black">Age</label>
+                <input type="number" class="form-control" id="age" name="age" required>
+            </div>
+            <div class="mb-3">
+                <label for="gender" class="form-label text-black">Gender</label>
+                <select class="form-select" id="gender" name="gender" required>
+                    <option value="">Select your gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="contact_number" class="form-label text-black">Contact Number</label>
+                <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label text-black">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
