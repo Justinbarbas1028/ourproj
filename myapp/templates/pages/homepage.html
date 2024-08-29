@@ -2,7 +2,6 @@
 
 {% block title %}HOME PAGE{% endblock %}
 
-
 {% block content %}
     {% include 'pages/navbar.html' %}
     <div class="home-container">
@@ -11,8 +10,7 @@
             <p class="intro-text">
                 The premier university in historic Cavite globally recognized for excellence in character development, academics, research, innovation, and sustainable community engagement. Mithiin ng Pamantasan.
             </p>
-            <button type="button" class="btn btn-success">Get Started</button>
+            <a href="{% url 'about' %}" class="btn btn-success">Get Started</a>
         </div>
     </div>
 {% endblock %}
-

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student, StudentProfile, Professor, Course, Subject, Enrollment, Announcement, Grade
+from .models import Student, StudentProfile, Professor, Course, Subject, Enrollment, Announcement, Grade, NewStudentRegistration
 
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('email', 'first_name', 'last_name', 'is_admin', 'is_active')
@@ -44,6 +44,10 @@ class GradeAdmin(admin.ModelAdmin):
     list_display = ('student', 'subject', 'grade')
     search_fields = ('student', 'subject', 'grade')
 
+class NewStudentRegistrationAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'student_number', 'course', 'year_level', 'semester')
+    search_fields = ('first_name', 'last_name', 'student_number', 'course')
+
 admin.site.register(Student, StudentAdmin)
 admin.site.register(StudentProfile, StudentProfileAdmin)
 admin.site.register(Professor, ProfessorAdmin)
@@ -52,3 +56,4 @@ admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Enrollment, EnrollmentAdmin)
 admin.site.register(Announcement, AnnouncementAdmin)
 admin.site.register(Grade, GradeAdmin)
+admin.site.register(NewStudentRegistration, NewStudentRegistrationAdmin)

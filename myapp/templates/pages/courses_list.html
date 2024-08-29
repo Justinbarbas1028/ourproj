@@ -1,37 +1,38 @@
 {% extends "pages/admin_base.html" %}
-
+{% block title %}Course List{% endblock %}
 {% block content %}
     {% include 'pages/navbar.html' %}
-    <h1>Course List</h1>
+    <div class="courseslist-container">
+        <h1>Course List</h1>
+        <a href="{% url 'add_courses' %}" class="btn btn-success mb-3">Add Course</a>
     
-    <a href="{% url 'add_courses' %}" class="btn btn-success mb-3">Add Course</a>
-
-    <div class="table-responsive">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Professors</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for course in courses %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
                 <tr>
-                    <td>{{ course.title }}</td>
-                    <td>{{ course.description }}</td>
-                    <td>
-                        {% for professor in course.professors.all %}
-                            {{ professor.first_name }} {{ professor.last_name }}{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
-                    </td>
-                    <td>
-                        <a href="{% url 'update_course' course.id %}" class="btn btn-primary btn-sm">Edit</a>
-                    </td>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Professors</th>
+                    <th>Actions</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for course in courses %}
+                    <tr>
+                        <td>{{ course.title }}</td>
+                        <td>{{ course.description }}</td>
+                        <td>
+                            {% for professor in course.professors.all %}
+                                {{ professor.first_name }} {{ professor.last_name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <a href="{% url 'update_course' course.id %}" class="btn btn-primary btn-sm btn-custom">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}

@@ -2,34 +2,36 @@
 
 {% block content %}
     {% include 'pages/navbar.html' %}
-    <h1>Professor List</h1>
+    <div class="professorlist-container">
+        <h1>Professor List</h1>
+        
+        <a href="{% url 'add_professor' %}" class="btn btn-success mb-3">Add Professor</a>
     
-    <a href="{% url 'add_professor' %}" class="btn btn-success mb-3">Add Professor</a>
-
-    <div class="table-responsive">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Department</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for professor in professors %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
                 <tr>
-                    <td>{{ professor.first_name }}</td>
-                    <td>{{ professor.last_name }}</td>
-                    <td>{{ professor.email }}</td>
-                    <td>{{ professor.department }}</td>
-                    <td>
-                        <a href="{% url 'update_professor' professor.id %}" class="btn btn-primary btn-sm">Edit</a>
-                    </td>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Actions</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for professor in professors %}
+                    <tr>
+                        <td>{{ professor.first_name }}</td>
+                        <td>{{ professor.last_name }}</td>
+                        <td>{{ professor.email }}</td>
+                        <td>{{ professor.department }}</td>
+                        <td>
+                            <a href="{% url 'update_professor' professor.id %}" class="btn btn-primary btn-sm btn-custom">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}
