@@ -1,0 +1,333 @@
+* {
+    box-sizing: border-box;
+}
+
+.navbar-logo {
+    height: 40px;
+    width: auto;
+}
+
+
+.login-container-wrapper {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../../static/images/bgpage.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.login-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 450px;
+    z-index: 1;
+    position: relative;
+    margin-left: -750px;
+}
+
+.login-container img {
+    display: block;
+    margin: 0 auto 20px;
+    width: 80px;
+    height: 80px;
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border-radius: 30px;
+}
+
+.btn-primary {
+    margin-bottom: 50px;
+    width: 100%;
+    border-radius: 30px;
+    background-color: #1B5E1F !important;
+    border-color: #1B5E1F!important;
+}
+
+.form-text {
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 100px;
+}
+
+.links {
+    display: flex;
+}
+
+.links li {
+    margin-left: 3rem;
+    list-style: none;
+}
+
+.ml-custom {
+    margin-left: 40px;
+}
+
+.padding-custom-7 {
+    padding-inline: 7rem !important;
+}
+
+.navbar-logo {
+    height: 40px !important;
+    width: auto !important;
+}
+
+.home-container {
+    background-image: url("../../static/images/bghomemain.png");
+    padding-block: 100px;
+    background-size: cover;
+    height: 89vh;
+    overflow: hidden;
+}
+
+.navbar-nav .nav-link {
+    transition: background-color 0.5s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: white;
+    color: black !important;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+}
+
+.nav-item.profile-icon {
+    margin-left: 60px;
+}
+
+.title {
+    font-size: 4rem;
+    color: #024c12;
+}
+
+.intro-text {
+    font-size: 1.5rem;
+}
+
+.side-home {
+    margin-left: 13rem;
+    width: 560px;
+}
+
+.card-custom {
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 21rem;
+    margin: 0 auto;
+}
+
+.card-custom:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ABOUT PAGE ********************************* */
+.about-headers {
+    position: relative;
+    background-image: url("../../static/images/cvsu-mainbg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.about-headers::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.about {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 70px;
+    font-family: Verdana;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.about h5 {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.learn-more-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #20803F;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.learn-more-btn:hover {
+    background-color: #186c32;
+}
+
+.learn-more-btn:active {
+    transform: scale(0.95);
+}
+
+/* MISSION PAGE ********************* */
+.univ-vision {
+    background-image: url("../../static/images/vision-bg.png");
+    background-size: cover;
+    height: 100vh;
+    color: white;
+    padding: 20px;
+    border-bottom: 5px solid black;
+}
+
+.vision-container {
+    max-width: 800px;
+    padding: 70px;
+    text-align: left;
+    margin-left: 10px;
+    display: flex;
+}
+
+.vision-container h1 {
+    color: #20803F;
+    font-size: 4rem;
+}
+
+.vision-container h5 {
+    margin-top: 100px;
+    color: black;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+.vision-container hr {
+    border: 3px solid green;
+    border-top: 3px solid #20803F;
+    margin: 20px 0;
+    height: 3px;
+}
+
+/* mission PAGE ********************* */
+.univ-mission {
+    background-image: url("../../static/images/vision-bg.png");
+    background-size: cover;
+    height: 100vh;
+    color: white;
+    padding: 20px;
+    border-bottom: 5px solid black;
+}
+
+.mission-container {
+    max-width: 800px;
+    padding: 70px;
+    text-align: left;
+    margin-left: 10px;
+    display: flex;
+}
+
+.mission-container h1 {
+    color: #20803F;
+    font-size: 4rem;
+}
+
+.mission-container h5 {
+    margin-top: 50px;
+    color: black;
+    font-size: 1.7rem;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+.mission-container hr {
+    border: 3px solid green;
+    border-top: 3px solid #20803F;
+    margin: 20px 0;
+    height: 3px;
+}
+
+/* Registration Page */
+
+.register-container-wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../../static/images/cvsu-main.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.register-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+.register-container h2 {
+    color: #024c12;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-family: Verdana;
+}
+
+.register-container form p {
+    margin: 10px 0;
+}
+
+.register-container .form-control {
+    border-radius: 5px;
+    padding: 10px;
+    width: calc(100% - 22px);
+    margin: 10px 0;
+    border: 1px solid #ddd;
+}
+
+.register-container button {
+    width: 100%;
+    padding: 10px;
+    background: #1B5E1F;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-container button:hover {
+    background: #186c32;
+}
+
+.register-container .form-text {
+    text-align: center;
+}
+

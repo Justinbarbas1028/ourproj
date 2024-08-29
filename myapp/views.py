@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import StudentRegistrationForm, LoginForm, StudentEditForm, ChangePasswordForm, ProfessorForm, StudentProfileForm, CourseForm, SubjectForm, AnnouncementForm
+from .forms import StudentRegistrationForm, LoginForm, StudentEditForm, ChangePasswordForm, ProfessorForm, StudentProfileForm, CourseForm, SubjectForm, AnnouncementForm, NewStudentRegistrationForm, EditStudentForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-from .models import Student, StudentProfile, Course, Subject, Professor, Announcement
+from .models import Student, StudentProfile, Course, Subject, Professor, Announcement, NewStudentRegistration
+from django.db.models import Q, Count
 
 def user_login(request):
     if request.method == 'POST':
@@ -41,21 +42,108 @@ def register(request):
 def index(request):
     return render(request, 'pages/index.html')
 
+def landingpage(request):
+    return render(request, 'pages/landingpage.html', {
+        'is_landing_page': True
+    })
+
+def registration(request):
+    if request.method == 'POST':
+        form = NewStudentRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('registration')  # Redirect to a success page
+    else:
+        form = NewStudentRegistrationForm()
+    return render(request, 'pages/registration.html', {'form': form})
+
+@login_required
+def new_student_list(request):
+    search_query = request.GET.get('search', '')
+    student_type = request.GET.get('student_type', '')
+
+    if search_query:
+        registrations = NewStudentRegistration.objects.filter(
+            Q(student_number__icontains=search_query) |
+            Q(last_name__icontains=search_query) |
+            Q(course__icontains=search_query)
+        )
+    else:
+        registrations = NewStudentRegistration.objects.all()
+
+    if student_type in ['regular', 'irregular']:
+        registrations = registrations.filter(student_type=student_type)
+
+    context = {
+        'registrations': registrations,
+        'search_query': search_query,
+    }
+    return render(request, 'pages/new_student_list.html', context)
+
+@login_required
+def view_student_details(request, student_id):
+    student = get_object_or_404(NewStudentRegistration, id=student_id)
+    context = {
+        'student': student
+    }
+    return render(request, 'pages/student_details.html', context)
+
+@login_required
+def update_registration(request, registration_id):
+    student = get_object_or_404(NewStudentRegistration, id=registration_id)
+
+    if request.method == 'POST':
+        form = EditStudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('new_student_list')
+    else:
+        form = EditStudentForm(instance=student)
+
+    return render(request, 'pages/edit_student.html', {'form': form})
+@login_required
+def confirm_delete_registration(request, registration_id):
+    registration = get_object_or_404(NewStudentRegistration, id=registration_id)
+    return render(request, 'pages/delete_registration.html', {'registration': registration})
+
+@login_required
+def delete_registration(request, registration_id):
+    registration = get_object_or_404(NewStudentRegistration, id=registration_id)
+    if request.method == 'POST':
+        registration.delete()
+        return redirect('new_student_list')
+    return redirect('confirm_delete_registration', registration_id=registration_id)
+
 @login_required
 def administrator_page(request):
     if not request.user.is_admin:
         return HttpResponse('Unauthorized', status=401)
     return render(request, 'pages/administrator_page.html')
 
-@login_required
+
+def dashboard(request):
+
+    total_students = NewStudentRegistration.objects.count()
+    student_type_counts = NewStudentRegistration.objects.values('student_type').annotate(count=Count('student_type'))
+    course_counts = NewStudentRegistration.objects.values('course').annotate(count=Count('course'))
+    year_level_counts = NewStudentRegistration.objects.values('year_level').annotate(count=Count('year_level'))
+    gender_counts = NewStudentRegistration.objects.values('gender').annotate(count=Count('gender'))
+
+    context = {
+        'total_students': total_students,
+        'student_type_counts': student_type_counts,
+        'course_counts': course_counts,
+        'year_level_counts': year_level_counts,
+        'gender_counts': gender_counts,
+    }
+    return render(request, 'pages/dashboard.html', context)
+
 def home(request):
     return render(request, 'pages/homepage.html')
 
-@login_required
 def about(request):
     return render(request, 'pages/about.html')
 
-@login_required
 def courses(request):
     return render(request, 'pages/courses.html')
 
@@ -64,7 +152,6 @@ def subjects(request):
     subjects = Subject.objects.all()
     return render(request, 'pages/subjects.html', {'subjects': subjects})
 
-@login_required
 def announcement(request):
     announcements = Announcement.objects.all().order_by('-created_at')
     return render(request, 'pages/announcement.html', {'announcements': announcements})

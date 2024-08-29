@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.conf import settings
@@ -117,3 +119,66 @@ class Announcement(models.Model):
     def __str__(self):
         return self.title
 
+
+class NewStudentRegistration(models.Model):
+    STUDENT_TYPE_CHOICES = (
+        ('regular', 'Regular'),
+        ('irregular', 'Irregular'),
+    )
+
+    GENDER_CHOICES = (
+        ('male', 'Male'),
+        ('female', 'Female'),
+        ('other', 'Other'),
+    )
+
+    COURSE_CHOICES = (
+        ('bsit', 'BSIT'),
+        ('cs', 'BSCS'),
+        ('bshm', 'BSHM'),
+        ('crim', 'BSCRIM'),
+        ('bsp', 'BSP'),
+        ('bsed', 'BSEd'),
+    )
+
+    YEAR_LEVEL_CHOICES = (
+        (1, '1st Year'),
+        (2, '2nd Year'),
+        (3, '3rd Year'),
+        (4, '4th Year'),
+    )
+
+    SEMESTER_CHOICES = (
+        ('first', 'First Semester'),
+        ('second', 'Second Semester'),
+    )
+
+    student_type = models.CharField(max_length=50, choices=STUDENT_TYPE_CHOICES)
+    first_name = models.CharField(max_length=100, null=True)
+    middle_name = models.CharField(max_length=100, blank=True, null=True)
+    last_name = models.CharField(max_length=100, null=True)
+    student_number = models.CharField(max_length=50, unique=True, blank=True)
+    date_of_birth = models.DateField()
+    address = models.CharField(max_length=255)
+    course = models.CharField(max_length=100, choices=COURSE_CHOICES)
+    year_level = models.IntegerField(choices=YEAR_LEVEL_CHOICES)
+    semester = models.CharField(max_length=50, choices=SEMESTER_CHOICES, null=True)
+    age = models.IntegerField()
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
+    contact_number = models.CharField(max_length=15)
+    email = models.EmailField(unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.student_number:
+            year = timezone.now().year
+            last_student = NewStudentRegistration.objects.filter(student_number__startswith=str(year)).order_by('-student_number').first()
+            if last_student:
+                last_number = int(last_student.student_number[-5:])
+            else:
+                last_number = 0
+            new_number = f"{year}{str(last_number + 1).zfill(5)}"
+            self.student_number = new_number
+        super(NewStudentRegistration, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.student_number

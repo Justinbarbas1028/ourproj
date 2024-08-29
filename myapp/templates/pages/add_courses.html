@@ -1,13 +1,32 @@
 {% extends 'pages/index.html' %}
+{% load static widget_tweaks %}
 
 {% block title %}Add Course{% endblock %}
 
 {% block content %}
     {% include 'pages/navbar.html' %}
-    <h2>Add Course</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Course</button>
-    </form>
+    <div class="registration-main">
+        <div class="registration-container container mt-5"
+             style="background-color: white; padding: 30px; border-radius: 10px; max-width: 600px; width: 100%; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <h2 class="text-center mb-4 text-black">Add Course</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.non_field_errors }}
+                    {% for field in form %}
+                        <div class="form-group mb-3">
+                            {{ field.label_tag }}
+                            {{ field.errors }}
+                            {% render_field field class="form-control" %}
+                            {% if field.help_text %}
+                                <small class="form-text text-muted">{{ field.help_text }}</small>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Save Course</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
