@@ -1,0 +1,15 @@
+{% extends 'pages/index.html' %}
+
+{% block title %}Delete Student Registration{% endblock %}
+
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <h2>Are you sure you want to delete this registration?</h2>
+    <p><strong>Name:</strong> {{ registration.name }}</p>
+    <p><strong>Email:</strong> {{ registration.email }}</p>
+    <form action="{% url 'delete_registration' registration.id %}" method="post" onsubmit="return confirm('Are you sure you want to delete this registration?');">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'new_student_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

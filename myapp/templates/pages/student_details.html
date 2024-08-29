@@ -1,0 +1,61 @@
+{% extends "pages/admin_base.html" %}
+{% block title %}Student Details{% endblock %}
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Student Details</h1>
+
+        <a href="{% url 'new_student_list' %}" class="btn btn-secondary mb-3">Back to List</a>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Student Information</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">First Name</dt>
+                    <dd class="col-sm-9">{{ student.first_name }}</dd>
+
+                    <dt class="col-sm-3">Middle Name</dt>
+                    <dd class="col-sm-9">{{ student.middle_name }}</dd>
+
+                    <dt class="col-sm-3">Last Name</dt>
+                    <dd class="col-sm-9">{{ student.last_name }}</dd>
+
+                    <dt class="col-sm-3">Student Number</dt>
+                    <dd class="col-sm-9">{{ student.student_number }}</dd>
+
+                    <dt class="col-sm-3">Date of Birth</dt>
+                    <dd class="col-sm-9">{{ student.date_of_birth }}</dd>
+
+                    <dt class="col-sm-3">Address</dt>
+                    <dd class="col-sm-9">{{ student.address }}</dd>
+
+                    <dt class="col-sm-3">Course</dt>
+                    <dd class="col-sm-9">{{ student.course }}</dd>
+
+                    <dt class="col-sm-3">Year Level</dt>
+                    <dd class="col-sm-9">{{ student.year_level }}</dd>
+
+                    <dt class="col-sm-3">Semester</dt>
+                    <dd class="col-sm-9">{{ student.semester }}</dd>
+
+                    <dt class="col-sm-3">Age</dt>
+                    <dd class="col-sm-9">{{ student.age }}</dd>
+
+                    <dt class="col-sm-3">Gender</dt>
+                    <dd class="col-sm-9">{{ student.get_gender_display }}</dd>
+
+                    <dt class="col-sm-3">Contact Number</dt>
+                    <dd class="col-sm-9">{{ student.contact_number }}</dd>
+
+                    <dt class="col-sm-3">Email</dt>
+                    <dd class="col-sm-9">{{ student.email }}</dd>
+
+                    <dt class="col-sm-3">Student Type</dt>
+                    <dd class="col-sm-9">{{ student.get_student_type_display }}</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+{% endblock %}

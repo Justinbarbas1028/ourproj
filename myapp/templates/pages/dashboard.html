@@ -1,0 +1,79 @@
+{% extends "pages/admin_base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    {% include 'pages/navbar.html' %}
+    <div class="dashboard-container">
+        <h1>Dashboard
+            <hr></h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card bg-info text-white">
+                        <div class="card-header">
+                            Number of Students by Course
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                {% for course in course_counts %}
+                                    <li class="list-group-item list-group-item-dark">{{ course.course }}: {{ course.count }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card bg-warning text-dark">
+                        <div class="card-header">
+                            Number of Students by Year Level
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                {% for year_level in year_level_counts %}
+                                    <li class="list-group-item list-group-item-dark">Year {{ year_level.year_level }}: {{ year_level.count }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card bg-danger text-white">
+                        <div class="card-header">
+                            Number of Students by Gender
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                {% for gender in gender_counts %}
+                                    <li class="list-group-item list-group-item-dark">{{ gender.gender|capfirst }}: {{ gender.count }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card bg-success text-white">
+                        <div class="card-header">
+                            Student Type 
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                {% for type in student_type_counts %}
+                                    <li class="list-group-item list-group-item-dark">{{ type.student_type|capfirst }}: {{ type.count }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card bg-primary text-white">
+                        <div class="card-header">
+                            Total Students
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ total_students }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
