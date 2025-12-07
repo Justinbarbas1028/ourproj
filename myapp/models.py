@@ -167,6 +167,7 @@ class NewStudentRegistration(models.Model):
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     contact_number = models.CharField(max_length=15)
     email = models.EmailField(unique=True)
+    terms_accepted = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if not self.student_number:

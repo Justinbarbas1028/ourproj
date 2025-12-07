@@ -3,39 +3,83 @@
 <title>{% block title %}About{% endblock %}</title>
 
 {% block content %}
-    {% include 'pages/navbar.html' %}
-    <div class="about-headers">
-        <div class="about">
-            CORE VALUES AND PRINCIPLES
-            <h5>Welcome to our website, where we proudly present the core values, principles, mission, and vision that guide our university.
-                Discover how we strive to foster an inspiring and inclusive educational environment dedicated to excellence and innovation.</h5>
-            <a href="#university-vision" class="learn-more-btn">Learn More</a>
+{% include 'pages/navbar.html' %}
+<div class="about-headers">
+    <div class="about">
+        CORE VALUES AND PRINCIPLES
+        <h5>Welcome to our website, where we proudly present the core values, principles, mission, and vision that guide
+            our university.
+            Discover how we strive to foster an inspiring and inclusive educational environment dedicated to excellence
+            and innovation.</h5>
+        <a href="#university-vision" class="learn-more-btn">Learn More</a>
+    </div>
+</div>
+<div class="univ-vision" id="university-vision">
+    <div class="vision-container">
+        <div>
+            <h1>UNIVERSITY VISION</h1>
+            <hr>
+            <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The premier university in historic Cavite globally recognized for
+                excellence in character development, academics, research, innovation and sustainable community
+                engagement.</h5>
         </div>
     </div>
-    <div class="univ-vision" id="university-vision">
-        <div class="vision-container">
-            <div>
-                <h1>UNIVERSITY VISION</h1>
-                <hr>
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The premier university in historic Cavite globally recognized for excellence in character development, academics, research, innovation and sustainable community engagement.</h5>
-            </div>
+</div>
+<div class="univ-mission">
+    <div class="mission-container">
+        <div>
+            <h1>UNIVERSITY MISSION</h1>
+            <hr>
+            <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cavite State University shall provide excellent, equitable and
+                relevant educational opportunities in the arts, sciences and technology through quality instruction and
+                responsive research and development activities.
+                <br>
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It shall produce professional, skilled and morally upright
+                individuals for global competitiveness.
+            </h5>
         </div>
     </div>
-    <div class="univ-mission">
-        <div class="mission-container">
-            <div>
-                <h1>UNIVERSITY MISSION</h1>
-                <hr> 
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cavite State University shall provide excellent, equitable and relevant educational opportunities in the arts, sciences and technology through quality instruction and responsive research and development activities.
-                    <br>
-                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It shall produce professional, skilled and morally upright individuals for global competitiveness.
-                </h5>
-            </div>
-        </div>
-    </div>
-    <div class="univ-third">
-        <div class="third-container">
+</div>
+<div class="univ-third">
+    <div class="third-container">
+        <!-- Image -->
+        <section class="about-section" style="text-align: center; padding: 30px;">
+            <h2>Our Campus</h2>
+            <img src="{% static 'images/cvsu-main.jpg' %}" alt="University Campus"
+                style="max-width: 100%; height: auto; border-radius: 10px; margin-top: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        </section>
 
-        </div>
+        <!-- Video -->
+        <section class="about-section" style="text-align: center; padding: 30px;">
+            <h2>Virtual Tour</h2>
+            <div
+                style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 800px; margin: 15px auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Campus Virtual Tour" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px;"></iframe>
+            </div>
+            <p style="margin-top: 10px; color: #555;">Watch a virtual tour of our campus.</p>
+        </section>
+
+        <!-- Slider -->
+        <section class="about-section" style="text-align: center; padding: 30px;">
+            <h2>Rate Your Experience</h2>
+            <div style="max-width: 400px; margin: 20px auto;">
+                <label for="experienceRating" style="font-size: 1.1rem;">How would you rate your experience?</label>
+                <input type="range" id="experienceRating" name="experienceRating" min="1" max="10" value="5"
+                    style="width: 100%; margin-top: 15px; cursor: pointer;">
+                <span id="ratingValue"
+                    style="display: block; margin-top: 10px; font-weight: bold; font-size: 1.2rem;">5</span>
+            </div>
+            <script>
+                const slider = document.getElementById('experienceRating');
+                const output = document.getElementById('ratingValue');
+                slider.oninput = function () {
+                    output.textContent = this.value;
+                }
+            </script>
+        </section>
     </div>
+</div>
 {% endblock %}

@@ -98,6 +98,7 @@ class NewStudentRegistrationForm(forms.ModelForm):
     gender = forms.ChoiceField(choices=NewStudentRegistration.GENDER_CHOICES, required=True, widget=forms.Select(attrs={'placeholder': 'Select Gender'}))
     contact_number = forms.CharField(max_length=15, required=True, widget=forms.TextInput(attrs={'placeholder': 'Contact Number'}))
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+    terms_accepted = forms.BooleanField(required=True, label='I accept the Terms and Conditions')
 
     class Meta:
         model = NewStudentRegistration
